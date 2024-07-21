@@ -108,6 +108,7 @@ function SignUpfrom() {
             <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/" />
           </div>
 
+
         </div>
       </main>
     </div>
