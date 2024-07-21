@@ -8,4 +8,4 @@ function HaveAccountORNot() {
     
   )
 }
-export default HaveAccountORNot
+export default HaveAccountORNot;

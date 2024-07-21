@@ -110,6 +110,9 @@ function SignUpfrom() {
           </div>
         </div>
       </main>
+      <div className="border border-gray-300 p-5 text-center w-72 mx-auto mt-20 rounded shadow">
+      Don&apos;t have an account? <Link className="text-blue-500 hover:underline"><i>Sign up</i></Link>
+    </div>
     </div>
   );
 }
