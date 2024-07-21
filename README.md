@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+npm i react-router-dom
+
+npm i react-icons
+
+=======
 
 ### 📸 Instagram Clone
 
@@ -10,3 +16,4 @@ Welcome to our Instagram Clone project! This is a full-stack web development pro
 
 
 🌟 Show your support Give a ⭐️ if you like this project!
+>>>>>>> 789f4bfc8964f8f5d98444c063b754f868df5bab
