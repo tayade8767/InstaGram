@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 // import mobileImage from './image.png';
 
@@ -25,15 +26,10 @@ function SignUpfrom() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <img 
-        src={'https://in.images.search.yahoo.com/images/view;_ylt=AwrPqDXVvpxmB2EyRkG9HAx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkAzI0MmEyNGViOTZkYzAxODFiMjk5NGI4ZjNhMzRlYzdlBGdwb3MDMTEEaXQDYmluZw--?back=https%3A%2F%2Fin.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3Dmobile%2Bnstagrm%2Bimage%2Bt%26ei%3DUTF-8%26type%3DE210IN826G0%26fr%3Dmcafee%26fr2%3Dp%253As%252Cv%253Ai%252Cm%253Asb-top%26tab%3Dorganic%26ri%3D11&w=860&h=671&imgurl=www.kindpng.com%2Fpicc%2Fm%2F460-4608214_iphone-instagram-mockup-png-png-download-mobile-phone.png&rurl=https%3A%2F%2Fnew-featuring.blogspot.com%2F2021%2F06%2Fdownload-415-instagram-mobile-mockup.html&size=477.5KB&p=mobile+nstagrm+image+t&oid=242a24eb96dc0181b2994b8f3a34ec7e&fr2=p%3As%2Cv%3Ai%2Cm%3Asb-top&fr=mcafee&tt=Download+415%2B+Instagram+Mobile+Mockup+Free+Download+PSD+Mockups+File&b=0&ni=200&no=11&ts=&tab=organic&sigr=CJYopSnvO..1&sigb=TRGpd.NAyvQo&sigi=nylSBylVXp5L&sigt=zg0T0ljlUGc_&.crumb=lv1pPEcfRzD&fr=mcafee&fr2=p%3As%2Cv%3Ai%2Cm%3Asb-top&type=E210IN826G0'} 
-        alt="Mobile preview" 
-        className="absolute top-0 left-0 h-full w-full object-cover opacity-20" 
-      />
+    <div className="relative min-h-screen flex flex-col items-center justify-center">
       <main className="signup-box flex flex-col items-center rounded-md">
-        <div className='box w-200 h-500 bg-white rounded-md shadow-md p-4 mt-20 border-black-950 border-solid'>
-          <div className="page flex flex-col items-center pb-8">
+        <div className='box w-96 h-[41rem] bg-white rounded-md shadow-md p-4 mt-20 border-black-950 border-solid mr-80'>
+          <div className="page flex flex-col items-center">
             <div className="header text-center">
               <h1 className="logo mb-10" 
                   style={{
