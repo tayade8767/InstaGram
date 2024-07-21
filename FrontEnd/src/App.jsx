@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <div className='text-red-500 bg-yellow-700'>
-      Akash
+    <div>
+      fagag
     </div>
   )
 }
 
-export default App
+export default App;
