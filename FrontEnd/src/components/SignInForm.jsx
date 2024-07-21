@@ -3,20 +3,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { BiLogoFacebookSquare } from "react-icons/bi";
+import Haveanaccountornot from '../components/HaveAccountORNot'
 
 function SignInForm() {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
     const handleSubmit = (event) => {
       event.preventDefault();
       // Implement form submission logic here (e.g., send data to server)
-      console.log('Form submitted:', { email, name, username, password });
+      console.log('Form submitted:', {username, password });
       // Clear form after submission (optional)
-      setEmail('');
-      setName('');
       setUsername('');
       setPassword('');
     };
@@ -87,7 +84,12 @@ function SignInForm() {
                 </form>
               </div>
             </div>
+
+
+          <div className='-ml-15 mt-12'>
+            <Haveanaccountornot accountornot="Don't have an account" linkText="Sign Up" linkTo="/signup"/>
           </div>
+        </div>
         </main>
       </div>
     );

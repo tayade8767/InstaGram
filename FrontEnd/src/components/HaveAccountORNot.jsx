@@ -1,11 +1,19 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import {Link} from "react-router-dom"
-function HaveAccountORNot() {
+import { NavLink} from "react-router-dom"
+import SignInSignUpRoute from '../AllRoutes/SignInSignUpRoute'
+
+function HaveAccountORNot({accountornot,linkText,linkTo}) {
   return (
-    <div className="border border-gray-500 p-5 text-center w-80 mx-auto mt-2 rounded shadow gap-2">
-      Don&apos;t have an account? <Link to="#" className="text-blue-500 hover:underline">Sign up</Link>
-    </div>
-    
+    <>
+      <div className="border-black-950 border-solid text-center w-96 rounded-md shadow-md p-4 mb-20">
+        {accountornot}? 
+        <NavLink to={linkTo} className="text-blue-500 hover:underline" >{linkText}</NavLink>
+        <SignInSignUpRoute/>
+      </div>
+    </>
   )
 }
+
 export default HaveAccountORNot

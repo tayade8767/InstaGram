@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import Haveanaccountornot from '../components/HaveAccountORNot'
 // import mobileImage from './image.png';
 
 
@@ -26,9 +28,9 @@ function SignUpfrom() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center">
-      <main className="signup-box flex flex-col items-center rounded-md">
-        <div className='box w-96 h-[41rem] bg-white rounded-md shadow-md p-4 mt-20 border-black-950 border-solid mr-80'>
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-auto">
+      <main className=" signup-box flex flex-col items-center rounded-md ">
+        <div className='box w-96 h-[37rem] bg-white rounded-md shadow-md p-4 border-black-950 border-solid mr-80'>
           <div className="page flex flex-col items-center">
             <div className="header text-center">
               <h1 className="logo mb-10" 
@@ -98,16 +100,14 @@ function SignUpfrom() {
                 >
                   Sign up
                 </button>
-                <ul className="list-none text-center mb-2 text-gray-500">
-                  <li className="inline">By signing up, you agree to our </li>
-                  <li className="inline font-bold">Terms,</li>
-                  <li className="inline font-bold">Data Policy,</li>
-                  <li className="inline"> and </li>
-                  <li className="inline font-bold">Cookies Policy.</li>
-                </ul>
               </form>
             </div>
           </div>
+
+          <div className='-ml-15 mt-8'>
+            <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/" />
+          </div>
+
         </div>
       </main>
     </div>
