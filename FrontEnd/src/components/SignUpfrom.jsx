@@ -108,6 +108,7 @@ function SignUpfrom() {
             <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/" />
           </div>
 
+
         </div>
       </main>
       <div className="border border-gray-300 p-5 text-center w-72 mx-auto mt-20 rounded shadow">
