@@ -107,8 +107,6 @@ function SignUpfrom() {
           <div className='-ml-15 mt-8'>
             <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/" />
           </div>
-
-
         </div>
       </main>
     </div>

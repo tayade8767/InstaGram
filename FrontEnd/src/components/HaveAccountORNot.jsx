@@ -16,4 +16,4 @@ function HaveAccountORNot({accountornot,linkText,linkTo}) {
   )
 }
 
-export default HaveAccountORNot
+export default HaveAccountORNot;
