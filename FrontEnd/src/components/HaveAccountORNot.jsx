@@ -15,9 +15,5 @@ function HaveAccountORNot({accountornot,linkText,linkTo}) {
     </>
   )
 }
-<<<<<<< HEAD
-export default HaveAccountORNot;
-=======
 
-export default HaveAccountORNot
->>>>>>> 44b38b8ae87e9f40b726a24bd79d10d620b4443a
+export default HaveAccountORNot;
