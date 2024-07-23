@@ -5,6 +5,7 @@ import SliderBar from '../components/SliderBar'
 function Home() {
   return(
     <SliderBar/>
+    
   ) 
 }
 
