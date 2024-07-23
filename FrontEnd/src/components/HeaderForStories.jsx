@@ -68,7 +68,7 @@ function HeaderForStories() {
     },
   ]);
   return (
-    <div className="relative max-w-lg mx-auto">
+    <div className="relative max-w-screen-sm mx-auto">
       <button
         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 z-10"
         onClick={() => scroll(-300)}
