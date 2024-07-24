@@ -35,6 +35,11 @@ function SideComponantHomepage() {
               <Usericon key={index} btnname={user}/>
             ))
           }
+          <div className='flex flex-col mt-4 text-stone-600	text-[12px]'>
+            <span>About . Help . Press . API . Jobs . Privacy . Terms . </span>
+            <span>Locations . Language . Meta Verified</span>
+            <span className='mt-4'>© 2024 INSTAGRAM FROM META</span>
+          </div>
       </div>
     </div>
   )
