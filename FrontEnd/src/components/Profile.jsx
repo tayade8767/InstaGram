@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import {Link } from 'react-router-dom'
 import { PiCamera } from "react-icons/pi";
+import { FaKeyboard } from "react-icons/fa6";
+import { CiSaveDown1 } from "react-icons/ci";
+import { MdOutlinePermContactCalendar } from "react-icons/md";
+
 function Profile() {
   const inputRef = useRef(null);
   const [image, setImage] = useState("https://tse2.mm.bing.net/th?id=OIP.x7X2oAehk5M9IvGwO_K0PgHaHa&pid=Api&P=0&h=180"); // Replace with your placeholder image path
@@ -8,7 +12,6 @@ function Profile() {
   const handleImageClick = () => {
     inputRef.current.click();
   };
-
   const handleChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -64,9 +67,9 @@ function Profile() {
       <div className="mt-20 border-t pt-4 gap-5">
        
         <div className="flex justify-center space-x-8 text-sm gap-4">
-          <div className="text-gray-600 cursor-pointer"><i></i>POSTS</div>
-          <div className="text-gray-600 cursor-pointer">SAVED</div>
-          <div className="text-gray-600 cursor-pointer">TAGGED</div>
+          <div className="text-gray-600 cursor-pointer flex flex-row gap-1"><i className='mt-1'><FaKeyboard /></i>POSTS</div>
+          <div className="text-gray-600 cursor-pointer flex flex-row gap-1"> <i className='mt-1'><CiSaveDown1 /></i>SAVED</div>
+          <div className="text-gray-600 cursor-pointer flex flex-row gap-1">TAGGED</div>
         </div>
         
         <div className="mt-10 flex flex-col text-center justify-center items-center gap-3">
