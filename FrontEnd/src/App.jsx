@@ -6,6 +6,8 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home'
 import PostPage from './pages/PostPage';
 import Profile from './pages/Profile';
+import Explore from './components/Explore';
+import Messages from './components/Messages'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/post' element={<PostPage />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/explore' element={<Explore />} />
+          <Route path='/messages' element={<Messages />} />
         </Routes>
       </div>
   );

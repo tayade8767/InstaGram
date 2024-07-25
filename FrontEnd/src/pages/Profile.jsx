@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import SliderBar from '../components/SliderBar'
 import Profile1 from '../components/Profile'
