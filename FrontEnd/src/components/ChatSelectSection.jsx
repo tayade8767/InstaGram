@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Messagecontainerstory from "./Messagecontainerstory.jsx";
 import Usericon from "./Usericon.jsx";
+import PopupWindow from "./PopupWindow.jsx";
 
 function ChatSelectSection() {
 
@@ -48,8 +49,8 @@ function ChatSelectSection() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="h-[5rem]">
-        kjkjndsansdonass
+      <div>
+        <PopupWindow/>
       </div>
       <div className="flex flex-col overflow-y-auto">
         <div className="">

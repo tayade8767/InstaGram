@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { FiEdit } from "react-icons/fi";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -5,11 +6,14 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { GrClose } from "react-icons/gr";
 import { Link } from "react-router-dom"
+import Onclickselectionpopupforchat from './Onclickselectionpopupforchat';
 
 const PopupWindow = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [val, setVal] = useState(false); 
+
+    const [showModal, setShowModal] = useState(false);
   
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -17,10 +21,14 @@ const PopupWindow = () => {
       setUsername('');
       setPassword('');
     };
+
+    const setclicktofalse = () => {
+      setShowModal(false);
+    }
   
     return (
       <div className="flex flex-row">
-        <div className="items-center ml-20 mt-20 bg-zinc-200 h-18 w-80 flex rounded-md p-4">
+        <div className="items-center pt-8 font-extrabold space-x-56 text-xl flex rounded-md p-4">
           <div className="flex items-center flex-grow">
             <span className="font-semibold">userid</span>
             <Popup 
@@ -82,7 +90,10 @@ const PopupWindow = () => {
               )}
             </Popup>
           </div>
-          <FiEdit className="w-6 h-6 cursor-pointer hover:text-green-700" />
+          <div>
+            <FiEdit onClick={() => setShowModal(true)} className="w-6 h-6 cursor-pointer hover:text-zinc-700" />
+            {showModal && <Onclickselectionpopupforchat onClose={setclicktofalse} />}
+          </div>
         </div>
       </div>
     );
