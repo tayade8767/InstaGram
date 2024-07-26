@@ -1,21 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import SideIconsforallpages from '../components/SideIconsforallpages'
+import ChatSelectSection from './ChatSelectSection.jsx'
+import Demochatpage from '../components/Demochatpage'
 
 function Messages() {
+
+  const [chatistrueornot, setchatistrueornot] = useState(false)
+
   return (
-    <div className='h-screen w-screen bg-red-200 flex max-w-screen'>
-      <div className='w-[5%] border-r-2 border-zinc-400 mr-3'>
+    <div className='h-screen w-screen flex max-w-screen'>
+      <div className='w-[5%]'>
         <SideIconsforallpages />
       </div>
-      <div className='bg-blue-500 w-[23%]'>
-
+      <div className='w-[23%]'>
+        <ChatSelectSection />
       </div>
-      <div className='bg-zinc-400 max-w-[60rem]'>
-
+      <div className='w-[72%] overflow-y-auto'>
+         {
+            !chatistrueornot && <Demochatpage />
+         }
       </div>
     </div>
   )
 }
 
 export default Messages
+

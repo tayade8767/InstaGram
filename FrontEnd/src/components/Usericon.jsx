@@ -5,7 +5,7 @@ import React from 'react'
 
 function Usericon({btnname}) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center mt-2 hover:opacity-75 inset-0">
         <div className="shrink-0 item-center justify-items-center">
             <div className="flex items-center justify-center rounded-full">
                 <div className="bg-amber-500 w-12 h-12 rounded-full border-[.1rem] ">
