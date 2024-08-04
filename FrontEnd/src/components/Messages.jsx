@@ -11,7 +11,7 @@ function Messages() {
   return (
     <div className='h-screen w-screen flex max-w-screen'>
       <div className='w-[5%]'>
-        <SideIconsforallpages />
+        <SideIconsforallpages />  
       </div>
       <div className='w-[23%]'>
         <ChatSelectSection onChatSelect={() => setIsChatActive(true)} />
