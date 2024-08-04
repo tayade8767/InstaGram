@@ -8,6 +8,8 @@ import PostPage from './pages/PostPage';
 import Profile from './pages/Profile';
 import Explore from './components/Explore';
 import Messages from './components/Messages'
+import PopupWindow from './components/PopupWindow';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route path='/explore' element={<Explore />} />
           <Route path='/messages' element={<Messages />} />
+          <Route path='/popup' element={<PopupWindow/>}/>
         </Routes>
       </div>
   );
