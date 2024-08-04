@@ -1,1 +1,1 @@
-export const DB_NAME='CHAIAURCODEYOUTUBEBACKEND'
+export const DB_NAME='Instagramproject'
