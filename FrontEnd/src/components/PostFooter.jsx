@@ -88,21 +88,31 @@ function PostFooter() {
                     onChange={(e) => setComment(e.target.value)}
                     className="flex-grow bg-transparent outline-none text-sm"
                 />
+                  
+                <div className="relative">
+                    <BsEmojiSmile 
+                        size={18} 
+                        className="mr-3 text-gray-500 cursor-pointer" 
+                        onClick={() => setShowEmojiPicker(!showEmojiPicker)} 
+                    />
+
+                    {showEmojiPicker && (
+                        <div 
+                            ref={emojiPickerRef} 
+                            className="absolute right-0 top-full mt-1"
+                        >
+                            <EmojiPicker onEmojiClick={onEmojiClick} />
+                        </div>
+                    )}
+                </div>
+
                 <button 
                     type="submit" 
-                    className={`text-blue-500 font-semibold text-sm ${!comment.trim() ? 'opacity-50 cursor-default' : 'cursor-pointer'}`}
+                    className={`text-blue-500 mr-1 font-semibold text-sm ${!comment.trim() ? 'opacity-50 cursor-default' : 'cursor-pointer'}`}
                     disabled={!comment.trim()}
                 >
-                    
+                    Post
                 </button>
-                  
-                <BsEmojiSmile size={18} className="mr-3 text-gray-500 cursor-pointer" onClick={() => setShowEmojiPicker(!showEmojiPicker)} />
-
-                {showEmojiPicker && (
-                    <div ref={emojiPickerRef} className="absolute ml-20 mb-10">
-                        <EmojiPicker onEmojiClick={onEmojiClick} />
-                    </div>
-                )}
 
             </form>
             <div className="border-[.04rem] mt-4 border-gray-900 my-2"></div>
