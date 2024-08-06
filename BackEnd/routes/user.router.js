@@ -7,12 +7,13 @@ const router =Router();
 
 import { 
     registerUser,
-    // loginUser,
+    loginUser,
  } from '../controllers/user.controller.js';
 
 
 router.route('/register').post(registerUser);
+console.log("use.router.js file")
 
-// router.route('/login').post(loginUser);
+router.route('/login').post(loginUser);
 
 export default router;
