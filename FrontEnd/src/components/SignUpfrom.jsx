@@ -108,7 +108,7 @@ function SignUpfrom() {
           </div>
 
           <div className='-ml-15 mt-8'>
-            <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/" />
+            <Haveanaccountornot accountornot="already have an account" linkText="Sign In" linkTo="/api/v1/users/login" />
           </div>
         </div>
       </main>

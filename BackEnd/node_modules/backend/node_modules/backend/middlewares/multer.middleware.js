@@ -1,5 +1,7 @@
 import multer from "multer";
-const path = require("path");
+
+import path  from "path";
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, path.resolve(__dirname, '../UploadedContaint'));                //  this is the updated code for resolution of the path
@@ -8,7 +10,8 @@ const storage = multer.diskStorage({
       cb(null, file.originalname);
     }
   });
-  const upload = multer({ storage });
-  
-  module.exports = upload;
+
+export const upload = multer({ 
+    storage, 
+})
   

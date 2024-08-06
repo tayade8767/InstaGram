@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -9,13 +10,18 @@ const initialState = {
     isLoading: false,
 }
 
+const api = axios.create({
+  baseURL: import.meta.env.REACT_APP_LOCALHOST_BACKEND || 'http://localhost:3000'
+});
+
 export const register = createAsyncThunk('auth/register',
     async(userData,thunkAPI) => {
         try{
-            const response = await axios.post('/register',userData);
+          console.log(userData);
+            const response = await api.post('/api/v1/users',userData);
             return response.data;
         } catch(err) {
-            return thunkAPI.rejectWithValue(err.response.data);
+            return thunkAPI.rejectWithValue(err.response?.data || err.message);
         }
     }
 )
@@ -23,10 +29,10 @@ export const register = createAsyncThunk('auth/register',
 export const login = createAsyncThunk('auth/login',
     async(userData,thunkAPI) => {
         try{
-            const response = await axios.post('/login',userData);
+            const response = await api.post('/login',userData);
             return response.data;
         } catch(err) {
-            return thunkAPI.rejectWithValue(err.response.data);
+            return thunkAPI.rejectWithValue(err.response?.data || err.message);
         }
     }
 )

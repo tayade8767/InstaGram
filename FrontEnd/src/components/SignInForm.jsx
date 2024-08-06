@@ -91,7 +91,7 @@ function SignInForm() {
 
 
           <div className='-ml-15 mt-12'>
-            <Haveanaccountornot accountornot="Don't have an account" linkText="Sign Up" linkTo="/signup"/>
+            <Haveanaccountornot accountornot="Don't have an account" linkText="Sign Up" linkTo="/api/v1/users/register"/>
           </div>
         </div>
         </main>
