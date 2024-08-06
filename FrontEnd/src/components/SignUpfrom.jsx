@@ -2,7 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Haveanaccountornot from '../components/HaveAccountORNot'
-// import mobileImage from './image.png';
+import { useDispatch,useSelector } from 'react-redux';
+import { register } from '../Slice/authslice';
 
 
 function SignUpfrom() {
@@ -11,11 +12,13 @@ function SignUpfrom() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
+  const { isLoading } = useSelector((state) => state.auth);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement form submission logic here (e.g., send data to server)
-    console.log('Form submitted:', { email, name, username, password });
-    // Clear form after submission (optional)
+    dispatch(register({ email, name, username, password }))
     setEmail('');
     setName('');
     setUsername('');
@@ -94,11 +97,11 @@ function SignUpfrom() {
                     className="w-full border border-gray-300 bg-gray-100 py-2 px-2"
                   />
                 </label>
-                <button
+                <button disabled={isLoading}
                   type="submit"
                   className="w-full py-2.5 px-5 rounded-md border-none bg-blue-500 text-white mb-4"
                 >
-                  Sign up
+                  {isLoading ? 'Loading...' : 'Register'}
                 </button>
               </form>
             </div>

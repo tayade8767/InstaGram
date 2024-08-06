@@ -4,16 +4,20 @@
 import React, { useState } from 'react'
 import { BiLogoFacebookSquare } from "react-icons/bi";
 import Haveanaccountornot from '../components/HaveAccountORNot'
+import { useDispatch,useSelector } from 'react-redux';
+import { login } from '../Slice/authslice';
 
 function SignInForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const { isLoading } = useSelector((state) => state.auth);
+
+    const dispatch = useDispatch();
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      // Implement form submission logic here (e.g., send data to server)
-      console.log('Form submitted:', {username, password });
-      // Clear form after submission (optional)
+      dispatch(login({username, password }));
       setUsername('');
       setPassword('');
     };
@@ -61,11 +65,11 @@ function SignInForm() {
                       className="w-full border border-gray-300 bg-gray-100 py-2 px-2"
                     />
                   </label>
-                  <button
+                  <button disabled={isLoading}
                     type="submit"
                     className="w-full py-2.5 px-5 rounded-md border-none bg-blue-500 text-white mb-4"
                   >
-                    Login In
+                    {isLoading ? 'Loading...' : 'Login'}
                   </button>
                   <div className="flex flex-row items-center text-gray-500 mb-4">
                     <hr className="flex-grow border-t border-gray-300" />
