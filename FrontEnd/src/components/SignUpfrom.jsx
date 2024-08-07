@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Haveanaccountornot from '../components/HaveAccountORNot'
 import { useDispatch,useSelector } from 'react-redux';
 import { register } from '../Slice/authslice';
+import { useNavigate } from 'react-router-dom';
 
 
 function SignUpfrom() {
@@ -14,7 +15,15 @@ function SignUpfrom() {
 
   const dispatch = useDispatch();
 
-  const { isLoading } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  const { isLoading, user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if(user) {
+      navigate('/'); // Navigate to home page if user is logged in
+    }
+  },[user,navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,10 +34,10 @@ function SignUpfrom() {
     setPassword('');
   };
 
-  const handleLoginNavigation = () => {
-    // Implement logic to navigate to login page
-    console.log('Navigate to login');
-  };
+  // const handleLoginNavigation = () => {
+  //   // Implement logic to navigate to login page
+  //   console.log('Navigate to login');
+  // };
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-auto">
