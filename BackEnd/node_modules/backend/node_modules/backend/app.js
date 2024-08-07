@@ -15,7 +15,9 @@ app.use(express.static("public"))
 app.use(cookieParser())
 /*   for importing  files START   */
 
+
 import UserRouter from './routes/user.router.js';
+import PostRouter from './routes/post.router.js';
 import LikeRouter from './routes/like.router.js';
 import CommentRouter from './routes/comment.router.js';
 
@@ -29,10 +31,11 @@ import CommentRouter from './routes/comment.router.js';
 
 // console.log("app.js file")
 
+app.use("/api/v1/users",UserRouter);
+app.use("/api/v1/posts",PostRouter);
 app.use("/api/v1/users",UserRouter);               //   user all routes
 app.use("/api/v1/likes",LikeRouter);                //   like all routes
 app.use("/api/v1/comment",CommentRouter);          //  comment all routes
-
 
 /*  fro defining routes END      */
 
