@@ -4,8 +4,7 @@ import bcrypt from "bcrypt"
 
 const userSchema = new Schema(
 {
-    username:
-    {
+    username:{
          type:String,
         required:true,
         unique:true,
@@ -25,10 +24,20 @@ const userSchema = new Schema(
         trim:true,
         index:true
     },
+    avatar: {
+        type: String,      //   cloudnary url
+        required:true,
+    },
     password:{
         type:String,
         required:[true,'Password is required']
     },
+    posts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Post"
+        }
+    ],
     refreshToken:{
         type:String,
     }
@@ -45,7 +54,7 @@ userSchema.pre("save",async function(next){
     next();
 })
 
-userSchema.methods.isPasswordCorrect= async function(password){
+userSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password,this.password);
 }
 

@@ -25,8 +25,11 @@ import UserRouter from './routes/user.router.js';
 
 /*   for defining routes START   */ 
 
-console.log("app.js file")
+// console.log("app.js file")
+
 app.use("/api/v1/users",UserRouter);
+
+
 /*  fro defining routes END      */
 
 export { app }

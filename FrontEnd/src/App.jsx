@@ -18,7 +18,7 @@ function App() {
           <Route path="/api/v1/users/login" element={<SignIn />} />
           <Route path="/api/v1/users/register" element={<SignUp />} />
 
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home/>} />
           
           <Route path='/post' element={<PostPage />} />
           <Route path='/profile' element={<Profile />} />

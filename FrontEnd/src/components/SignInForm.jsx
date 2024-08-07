@@ -1,19 +1,29 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect,useState } from 'react'
 import { BiLogoFacebookSquare } from "react-icons/bi";
 import Haveanaccountornot from '../components/HaveAccountORNot'
 import { useDispatch,useSelector } from 'react-redux';
 import { login } from '../Slice/authslice';
+import { useNavigate } from 'react-router-dom';
 
 function SignInForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isLoading } = useSelector((state) => state.auth);
+    const { isLoading, user } = useSelector((state) => state.auth);
 
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      console.log(user)
+      if(user) {
+        navigate('/'); // Navigate to home page if user is logged in
+      }
+    },[user,navigate]);
   
     const handleSubmit = (event) => {
       event.preventDefault();
