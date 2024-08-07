@@ -12,14 +12,13 @@ function SignInForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const { isLoading, user } = useSelector((state) => state.auth);
-
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
+    const { isLoading, user } = useSelector((state) => state.auth);
+  
     useEffect(() => {
-      console.log(user)
       if(user) {
         navigate('/'); // Navigate to home page if user is logged in
       }
@@ -32,10 +31,10 @@ function SignInForm() {
       setPassword('');
     };
   
-    const handleLoginNavigation = () => {
-      // Implement logic to navigate to login page
-      console.log('Navigate to login');
-    };
+    // const handleLoginNavigation = () => {
+    //   // Implement logic to navigate to login page
+    //   console.log('Navigate to login');
+    // };
   
     return (
       <div className="relative min-h-screen flex flex-col items-center justify-center">
