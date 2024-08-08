@@ -1,8 +1,8 @@
 import { asyncHandler } from '../Utils/asyncHandler.js';
-import {ApiResponse } from "../Utils/ApiResponse";
-import {ApiError} from "../Utils/ApiError";
-import {Post} from "../models/post.model.js";
-import { uploadOnCloudinary } from '../Utils/cloudinary';
+import { ApiResponse } from '../Utils/ApiResponse.js';
+import { ApiError } from "../Utils/ApiError.js";
+import  Post from "../models/post.model.js";
+import  uploadOnCloudinary  from '../Utils/cloudinary.js';
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose";
 
@@ -38,4 +38,18 @@ const pushPost =asyncHandler(async(req,res)=>{
 })
 
 
-export  {pushPost};
+const fetchAllPosts = asyncHandler(async(req,res)=>{
+
+    const getAllPosts = await Post.find().populate('owner','-password');
+
+    return res
+    .status(200)
+    .json(new ApiResponse(true,"All Posts",getAllPosts));
+
+})
+
+
+export  { 
+     pushPost,
+     fetchAllPosts
+    };

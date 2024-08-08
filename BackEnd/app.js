@@ -26,14 +26,16 @@ import CommentRouter from './routes/comment.router.js';
 
 
 
-
 /*   for defining routes START   */ 
 
 // console.log("app.js file")
 
 app.use("/api/v1/users",UserRouter);
-app.use("/api/v1/posts",PostRouter);               //   user all routes
+
+app.use("/",PostRouter);               //   user all routes
+
 app.use("/api/v1/likes",LikeRouter);                //   like all routes
+
 app.use("/api/v1/comment",CommentRouter);          //  comment all routes
 
 /*  fro defining routes END      */

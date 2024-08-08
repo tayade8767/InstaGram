@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ const api = axios.create({
 
 export const fetchPosts = createAsyncThunk('posts/fetch', async (postdata, thunkAPI) => {
   try {
-    const response = await api.post('/api/v1/posts/fetch', postdata);
+    const response = await api.post('/', postdata);
     return response.data;
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response?.data || err.message);
