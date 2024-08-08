@@ -15,7 +15,7 @@ import {
     // getUserProfile
  } from '../controllers/user.controller.js';
 
-//  console.log("use.router.js file");
+//  console.log("use.router.js file");/api/v1/users/register
 
 router.route('/register').post(registerUser);
 router.route('/login').post(loginUser);
