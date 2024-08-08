@@ -9,7 +9,7 @@ import Profile from './pages/Profile';
 import Explore from './components/Explore';
 import Messages from './components/Messages'
 import PopupWindow from './components/PopupWindow';
-
+import Create from './components/Create';
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/api/v1/users/register" element={<SignUp />} />
 
           <Route path='/' element={<Home/>} />
+          <Route path="/create" element={<Create />} />
           
           <Route path='/post' element={<PostPage />} />
           <Route path='/profile' element={<Profile />} />

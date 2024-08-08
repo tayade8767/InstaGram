@@ -32,11 +32,13 @@ import CommentRouter from './routes/comment.router.js';
 // console.log("app.js file")
 
 app.use("/api/v1/users",UserRouter);
-app.use("/api/v1/posts",PostRouter);
-app.use("/api/v1/users",UserRouter);               //   user all routes
+app.use("/api/v1/posts",PostRouter);               //   user all routes
 app.use("/api/v1/likes",LikeRouter);                //   like all routes
 app.use("/api/v1/comment",CommentRouter);          //  comment all routes
 
 /*  fro defining routes END      */
 
 export { app }
+
+
+

@@ -38,4 +38,4 @@ const pushPost =asyncHandler(async(req,res)=>{
 })
 
 
-export default pushPost;
+export  {pushPost};
