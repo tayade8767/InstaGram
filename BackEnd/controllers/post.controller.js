@@ -9,18 +9,15 @@ import mongoose from "mongoose";
 
 const pushPost =asyncHandler(async(req,res)=>{
  try {
-    const {owner} = req.body;
-    if(!owner){
-        throw new ApiError("Owner is required",400);
-    }
-    const media= req.files?.imagevedio[0]?.path;
+    const media= req.files?.posts?.path;
     if(!media){
         throw new ApiError("Media is required",400);
     }
-    const imagevedio = await uploadOnCloudinary(media);
+    const imagevedio = await uploadOncloudnary(media);
     if(!imagevedio){
         throw new ApiError("Imagevedio is required",400);
     }
+    const owner = req.user._id;
     const post = await Post.create({
         owner:owner,
         imagevedio:imagevedio

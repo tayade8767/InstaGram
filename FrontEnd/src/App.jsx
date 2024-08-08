@@ -19,7 +19,6 @@ function App() {
           <Route path="/api/v1/users/register" element={<SignUp />} />
 
           <Route path='/' element={<Home/>} />
-          <Route path="/create" element={<Create />} />
           
           <Route path='/post' element={<PostPage />} />
           <Route path='/profile' element={<Profile />} />
