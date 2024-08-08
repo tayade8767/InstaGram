@@ -10,8 +10,9 @@ import {
 } from '../controllers/post.controller'
 
 
-router.route('/create').post(verifyJWT,pushPost);
 
+
+router.route("/create").post(verifyJWT, upload.single("posts"), pushPost)
 
 
 export default router;
