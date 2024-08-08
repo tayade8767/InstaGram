@@ -5,9 +5,14 @@ import HeaderForStories from '../components/HeaderForStories'
 import SliderBar from '../components/SliderBar'
 import SideComponantHomepage from '../components/SideComponantHomepage'
 import PostPage from './PostPage'
+import { useDispatch,useSelector } from 'react-redux';
 
 
 function Home() {
+
+  const { isLoading, posts } = useSelector((state) => state.auth);
+
+
   return (
     <div className="flex h-screen">
       <div className="w-1/5 fixed h-full">

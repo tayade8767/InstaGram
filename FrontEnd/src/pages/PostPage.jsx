@@ -5,6 +5,8 @@ import PostImage from "../components/PostImage";
 import PostFooter from "../components/PostFooter";
 
 function PostPage() {
+
+
   return (
     <div className="max-w-[25rem] h-screen bg-red-400">
       <div className="flex p-2 bg-lime-200 min-w-fit items-center justify-center w-[22rem]">
