@@ -12,7 +12,7 @@ const initialState = {
 
 const api = axios.create({
   baseURL: import.meta.env.REACT_APP_LOCALHOST_BACKEND || 'http://localhost:3000',
-  // withCredentials: true,
+  withCredentials: true,
 });
 
 export const register = createAsyncThunk('auth/register',
@@ -31,10 +31,12 @@ export const register = createAsyncThunk('auth/register',
 export const login = createAsyncThunk('auth/login',
     async(userData,thunkAPI) => {
         try{
-            console.log("Sending userData:", userData);
-            const response = await api.post('/api/v1/users/login',userData);
-            console.log("Response from server:", response.data);
-            return response.data;
+          console.log("Sending userData:", userData);
+          const response = await api.post('/api/v1/users/login', userData);
+          console.log(response.data); // Check for cookies in response headers
+          
+        
+          return response.data;
         } catch(err) {
             return thunkAPI.rejectWithValue(err.response?.data || err.message);
         }

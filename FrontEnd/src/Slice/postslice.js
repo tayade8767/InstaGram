@@ -10,6 +10,7 @@ const initialState = {
 
 const api = axios.create({
   baseURL: import.meta.env.REACT_APP_LOCALHOST_BACKEND || 'http://localhost:3000',
+  withCredentials: true,
 });
 
 export const fetchPosts = createAsyncThunk('posts/fetch', async (postdata, thunkAPI) => {

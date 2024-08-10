@@ -8,30 +8,31 @@ import mongoose from "mongoose";
 
 
 const pushPost =asyncHandler(async(req,res)=>{
- try {
-    const media= req.files?.posts?.path;
-    if(!media){
-        throw new ApiError("Media is required",400);
+try {
+    console.log("inside push post controller");
+    const media = req.file?.path;
+    console.log(media);
+    if (!media) {
+        throw new ApiError("Media is required", 400);
     }
-    const imagevedio = await uploadOncloudnary(media);
-    if(!imagevedio){
-        throw new ApiError("Imagevedio is required",400);
+    console.log("afa=="+ imageVideo);
+    const imageVideo = await uploadOnCloudinary(media);
+    console.log("afasdffasddfasdsf=="+ imageVideo);
+    if (!imageVideo) {
+        throw new ApiError("Image/Video upload failed", 400);
     }
     const owner = req.user._id;
     const post = await Post.create({
-        owner:owner,
-        imagevedio:imagevedio
-    })
-    if(!post){
-        throw new ApiError("Failed to create post",500);
+        owner: owner,
+        imageVideo: imageVideo
+    });
+    if (!post) {
+        throw new ApiError("Failed to create post", 500);
     }
-    await post.save();
-    
-     return res.status(201).json(new ApiResponse(true,"Post created successfully",post));
-
- } catch (error) {
-        throw new ApiError("Failed to create post",500);
- }
+    return res.status(201).json(new ApiResponse(true, "Post created successfully", post));
+    } catch (error) {
+    throw new ApiError(error.message || "Failed to create post", error.statusCode || 500);
+    }
 })
 
 

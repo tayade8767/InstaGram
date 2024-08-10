@@ -66,9 +66,24 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new ApiError(500, "Something went wrong While creating the User");
     }
 
+    const options = {
+        httpOnly: true, // This makes the cookie inaccessible to JavaScript's `document.cookie`
+        secure: true, // Set to true if you're running over HTTPS; false for HTTP
+        sameSite: 'Lax', // Helps prevent CSRF attacks; set to 'None' if the front-end and back-end are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // Cookie expiry time, e.g., 1 day
+    };
+    
     return res
-    .status(201)
-    .json(new ApiResponse(200,createdUser, "User Registered Successfully"))
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
+        .json(
+            new ApiResponse(200, 
+                { user: createdUser, accessToken, refreshToken },
+                "User logged in successfully"
+            )
+        );
+    
 
 })
 
@@ -105,18 +120,23 @@ const loginUser = asyncHandler( async (req,res) => {
     .select("-password -refreshToken");
 
     const options = {
-        httpOnly: true,
-        secure: true,
-    }
-
+        httpOnly: true, // This makes the cookie inaccessible to JavaScript's `document.cookie`
+        secure: true, // Set to true if you're running over HTTPS; false for HTTP
+        sameSite: 'Lax', // Helps prevent CSRF attacks; set to 'None' if the front-end and back-end are on different domains
+        maxAge: 24 * 60 * 60 * 1000 // Cookie expiry time, e.g., 1 day
+    };
+    
     return res
-    .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken,options)
-    .json(
-        new ApiResponse(200,{user: loggedinUser,accessToken,refreshToken},
-        "User logged in successfully")
-    );
+        .status(200)
+        .cookie("accessToken", accessToken, options)
+        .cookie("refreshToken", refreshToken, options)
+        .json(
+            new ApiResponse(200, 
+                { user: loggedinUser, accessToken, refreshToken },
+                "User logged in successfully"
+            )
+        );
+    
 
 })
 

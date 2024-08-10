@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 
 
-import React, { useState, useRef } from 'react';
+import  React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoHomeFill } from "react-icons/go";
@@ -38,12 +39,12 @@ function SliderBar() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result);
+        setImage(reader.result); // Assuming setImage is used to preview the image
       };
       reader.readAsDataURL(file);
       
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('posts', file);
       dispatch(createPost(formData));
     }
   };
@@ -182,6 +183,7 @@ function SliderBar() {
                 style={{ display: 'none' }}
                 accept="image/*,video/*"
                 capture="environment"
+                name='media'
               />
             </div>
           </div>

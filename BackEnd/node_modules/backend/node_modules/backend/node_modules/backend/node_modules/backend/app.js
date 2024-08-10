@@ -1,18 +1,20 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
+import cookieParser from 'cookie-parser';
+
 
 const app = express();
 
 app.use(cors({
     origin: 'http://localhost:5173',          // Your frontend URL
     credentials: true,
-}))
+}));
 
-app.use(express.json({limit: "32kb"}))
-app.use(express.urlencoded({ extended:true,limit:"32kb" }))
-app.use(express.static("public"))
-app.use(cookieParser())
+app.use(express.json({limit: "32kb"}));
+app.use(express.urlencoded({ extended:true,limit:"32kb" }));
+app.use(express.static("public"));
+app.use(cookieParser());
+
 /*   for importing  files START   */
 
 
@@ -28,13 +30,13 @@ import CommentRouter from './routes/comment.router.js';
 
 /*   for defining routes START   */ 
 
-// console.log("app.js file")
+console.log("app.js file")
 
 app.use("/api/v1/users",UserRouter);
 
 app.use("/",PostRouter);               //   user all routes
 
-app.use("/api/v1/likes",LikeRouter);                //   like all routes
+app.use("/api/v1/posts",PostRouter);                //   like all routes
 
 app.use("/api/v1/comment",CommentRouter);          //  comment all routes
 
