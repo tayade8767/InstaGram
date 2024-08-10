@@ -7,33 +7,40 @@ import jwt from 'jsonwebtoken'
 import mongoose from "mongoose";
 
 
-const pushPost =asyncHandler(async(req,res)=>{
-try {
-    console.log("inside push post controller");
-    const media = req.file?.path;
-    console.log(media);
-    if (!media) {
+const pushPost = asyncHandler(async (req, res) => {
+    try {
+      console.log("Inside push post controller");
+  
+      const media = req.file?.path;
+      console.log("Media path:", media);
+  
+      if (!media) {
         throw new ApiError("Media is required", 400);
-    }
-    console.log("afa=="+ imageVideo);
-    const imageVideo = await uploadOnCloudinary(media);
-    console.log("afasdffasddfasdsf=="+ imageVideo);
-    if (!imageVideo) {
+      }
+  
+      const imageVideo = await uploadOnCloudinary(media);
+      console.log("Cloudinary response:", imageVideo);
+  
+      if (!imageVideo || !imageVideo.url) {
         throw new ApiError("Image/Video upload failed", 400);
-    }
-    const owner = req.user._id;
-    const post = await Post.create({
+      }
+  
+      const owner = req.user._id;
+      const post = await Post.create({
         owner: owner,
-        imageVideo: imageVideo
-    });
-    if (!post) {
+        imagevedio: imageVideo.url // Store the URL from Cloudinary response
+      });
+  
+      if (!post) {
         throw new ApiError("Failed to create post", 500);
-    }
-    return res.status(201).json(new ApiResponse(true, "Post created successfully", post));
+      }
+  
+      return res.status(201).json(new ApiResponse(true, "Post created successfully", post));
     } catch (error) {
-    throw new ApiError(error.message || "Failed to create post", error.statusCode || 500);
+      console.error("Error in pushPost:", error);
+      throw new ApiError(error.message || "Failed to create post", error.statusCode || 500);
     }
-})
+  });
 
 
 const fetchAllPosts = asyncHandler(async(req,res)=>{
