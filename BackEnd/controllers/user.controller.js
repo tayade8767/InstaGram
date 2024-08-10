@@ -126,6 +126,8 @@ const loginUser = asyncHandler( async (req,res) => {
         maxAge: 24 * 60 * 60 * 1000 // Cookie expiry time, e.g., 1 day
     };
     
+
+    
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
