@@ -34,7 +34,7 @@ console.log("app.js file")
 
 app.use("/api/v1/users",UserRouter);
 
-app.use("/",PostRouter);               //   user all routes
+// app.use("/api/v1/posts",PostRouter);               //   user all routes
 
 app.use("/api/v1/posts",PostRouter);                //   like all routes
 

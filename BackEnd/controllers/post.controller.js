@@ -2,24 +2,26 @@ import { asyncHandler } from '../Utils/asyncHandler.js';
 import { ApiResponse } from '../Utils/ApiResponse.js';
 import { ApiError } from "../Utils/ApiError.js";
 import  Post from "../models/post.model.js";
+import { User } from "../models/user.model.js";
 import  uploadOnCloudinary  from '../Utils/cloudinary.js';
-import jwt from 'jsonwebtoken'
-import mongoose from "mongoose";
+// import jwt from 'jsonwebtoken'
+// import mongoose from "mongoose";
 
 
 const pushPost = asyncHandler(async (req, res) => {
     try {
-      console.log("Inside push post controller");
+      // console.log("Inside push post controller");
   
       const media = req.file?.path;
-      console.log("Media path:", media);
+      // console.log("Media path:", media);
   
       if (!media) {
         throw new ApiError("Media is required", 400);
       }
   
       const imageVideo = await uploadOnCloudinary(media);
-      console.log("Cloudinary response:", imageVideo);
+      
+      // console.log("Cloudinary response:", imageVideo);
   
       if (!imageVideo || !imageVideo.url) {
         throw new ApiError("Image/Video upload failed", 400);
@@ -34,6 +36,18 @@ const pushPost = asyncHandler(async (req, res) => {
       if (!post) {
         throw new ApiError("Failed to create post", 500);
       }
+
+      await User.findByIdAndUpdate(
+        owner,
+        {  
+           $push: { 
+                posts: post._id,
+            }
+        },
+        {
+           new: true,
+        }
+      )
   
       return res.status(201).json(new ApiResponse(true, "Post created successfully", post));
     } catch (error) {
@@ -45,11 +59,21 @@ const pushPost = asyncHandler(async (req, res) => {
 
 const fetchAllPosts = asyncHandler(async(req,res)=>{
 
-    const getAllPosts = await Post.find().populate('owner','-password');
+  const getAllPosts = await Post.find()
+  .populate('owner', '-password')
+  .populate({
+    path: 'comments',
+    populate: {
+      path: 'owner',
+      select: '-password'
+    }
+  });
 
-    return res
-    .status(200)
-    .json(new ApiResponse(true,"All Posts",getAllPosts));
+
+
+
+  // console.log("All posts:", getAllPosts);
+  return res.status(200).json(new ApiResponse(true, "All Posts", getAllPosts));
 
 })
 

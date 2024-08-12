@@ -48,28 +48,6 @@ function SliderBar() {
       dispatch(createPost(formData));
     }
   };
-  // const uploadFile = async (file) => {
-  //   // This function should handle the actual file upload to your backend
-  //   const formData = new FormData();
-  //   formData.append('file', file);
-
-  //   try {
-  //     const response = await fetch('/upload-endpoint', {
-  //       method: 'POST',
-  //       body: formData,
-  //     });
-
-  //     if (response.ok) {
-  //       console.log('File uploaded successfully');
-  //       // Handle the response from your server
-  //     } else {
-  //       console.error('File upload failed');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error uploading file:', error);
-  //   }
-  // };
-
 
   return (
     <div className="h-full bg-white shadow-lg p-4 mb-5 flex flex-col">

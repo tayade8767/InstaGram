@@ -1,17 +1,27 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { Link } from 'react-router-dom'
-import HeaderForStories from '../components/HeaderForStories'
-import SliderBar from '../components/SliderBar'
-import SideComponantHomepage from '../components/SideComponantHomepage'
-import PostPage from './PostPage'
-import { useDispatch,useSelector } from 'react-redux';
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from '../Slice/postslice';
+import HeaderForStories from '../components/HeaderForStories';
+import SliderBar from '../components/SliderBar';
+import SideComponantHomepage from '../components/SideComponantHomepage';
+import PostPage from './PostPage';
 
 function Home() {
+  const { isLoading, posts } = useSelector((state) => state.posts); // Adjust selector to match slice name
+  const dispatch = useDispatch();
 
-  const { isLoading, posts } = useSelector((state) => state.auth);
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // Log posts data when loading is done
+  console.log("Posts data:", posts);
 
   return (
     <div className="flex h-screen">
@@ -24,10 +34,11 @@ function Home() {
             <HeaderForStories />
           </div>
           <div className='flex flex-col items-center'>
-            <PostPage/>
-            <PostPage/>
-            <PostPage/>
-            <PostPage/>
+              { 
+                 posts.map( (postwithuser) => (
+                    <PostPage key={postwithuser._id} postwithuser={postwithuser}  />
+                 ))
+              }
           </div>
         </div>    
         <div className="w-2/5 p-4 bg-yellow-300">
@@ -35,7 +46,7 @@ function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

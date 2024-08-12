@@ -16,32 +16,27 @@ cloudinary.config({
 const uploadOnCloudinary = async (localFilePath) => {
     try {
         if(!localFilePath) return null;
-        // console.log(localFilePath);
-        //  upload the file on cloudinary
 
-        // const response = await cloudinary.uploader.upload(localFilePath , {
-        //     resource_type: 'auto'
-        // })
+        const response = await cloudinary.uploader.upload(localFilePath, { 
+            resource_type: 'auto' ,
+            resource_type: 'auto',
+            max_file_size: 500000000 // 50MB
+        });
 
-        const response = await cloudinary.uploader.upload(localFilePath,{ 
-            resource_type: 'auto' }
-        );
+        console.log("File has been uploaded successfully", response.url);
 
-        // console.log(response)
-        //  file has been uploaded successfully
-        console.log("File has been uploaded successfully",response.url);
-
-        //  if thw file is been uploaded successfully then delete the file form the local storage or from our server
-
-        unlinkSync(localFilePath);  // letter i we can delete the local file path from the local storage
+        unlinkSync(localFilePath);
         return response;
 
-    } catch(error) {
-        //   if the file has not been uploaded successfully then delete the file form the local storage or from the our server
-        unlinkSync(localFilePath);   // letter i we can delete the file form the local storage or from our server
+    } catch (error) {
+        console.error("Error during Cloudinary upload:", error);
+        if (localFilePath) {
+            unlinkSync(localFilePath);
+        }
         return null;
     }
 }
+
 
 export default uploadOnCloudinary;
 

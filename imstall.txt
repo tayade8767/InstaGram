@@ -19,3 +19,4 @@ npm install @reduxjs/toolkit react-redux axios
 
 npm install axios react-router-dom
 
+npm install reactjs-popup --save

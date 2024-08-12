@@ -1,18 +1,14 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 
-function PostImage() {
+function PostImage({ imagevedio }) {
   return (
-    <div className='h-auto w-auto flex items-center justify-center bg-gray-100'>
+    <div className="w-full h-full flex items-center justify-center bg-black">
       <img 
-        className='max-w-full max-h-full object-contain'
-        src='https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=600' 
-        alt='Image' 
-        style={{
-          objectFit: 'contain',
-          width: '100%',
-          height: '100%',
-        }}
+        src={imagevedio} 
+        alt="Post content" 
+        className="w-full h-full object-contain"
       />
     </div>
   )

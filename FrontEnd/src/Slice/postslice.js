@@ -13,14 +13,20 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const fetchPosts = createAsyncThunk('posts/fetch', async (postdata, thunkAPI) => {
+export const fetchPosts = createAsyncThunk('posts/fetch', async (_, thunkAPI) => {
   try {
-    const response = await api.post('/', postdata);
-    return response.data;
+    const response = await api.get('/api/v1/posts/fetch');
+    console.log("Response data:", response.data); // Log the response data
+
+    // Assuming the posts array is inside the `message` property
+    return response.data.message; // Adjust based on your API response structure
   } catch (err) {
     return thunkAPI.rejectWithValue(err.response?.data || err.message);
   }
 });
+
+
+
 
 export const createPost = createAsyncThunk('posts/create', async (postData, thunkAPI) => {
   try {
@@ -61,8 +67,8 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.posts = action.payload;
-      })
+        state.posts = action.payload; // This should now be an array
+      })      
       .addCase(fetchPosts.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
