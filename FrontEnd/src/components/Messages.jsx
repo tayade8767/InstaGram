@@ -9,6 +9,7 @@ function Messages() {
   const [isChatActive, setIsChatActive] = useState(true)
 
   return (
+    
     <div className='h-screen w-screen flex max-w-screen'>
       <div className='w-[5%]'>
         <SideIconsforallpages />  

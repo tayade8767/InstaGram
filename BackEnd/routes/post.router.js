@@ -12,7 +12,7 @@ import {
 } from '../controllers/post.controller.js'
 
 
-router.route('/').get(verifyJWT,fetchAllPosts);
+router.route('/fetch').get(verifyJWT,fetchAllPosts);
 router.route("/create").post(verifyJWT, upload.single("posts"), pushPost)
 
 export default router;

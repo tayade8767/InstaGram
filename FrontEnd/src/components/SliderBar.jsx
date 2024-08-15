@@ -88,8 +88,6 @@ function SliderBar() {
       setShowPopup(false);
     }
   };
-
- 
   const handleIconClick = () => {
     setShowSearchPopup(false); // Close search popup on any icon click
   };
