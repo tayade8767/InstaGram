@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-
-
-import  React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { GoHomeFill } from "react-icons/go";
@@ -18,16 +15,58 @@ import { createPost } from "../Slice/postslice.js";
 
 function SliderBar() {
   const [showPopup, setShowPopup] = useState(false);
+  const [showSearchPopup, setShowSearchPopup] = useState(false);
   const [image, setImage] = useState(null);
+  
   const inputRef = useRef(null);
   const dispatch = useDispatch();
 
+
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (query.length > 0) {
+        try {
+          const response = await fetch(`http://localhost:3000/api/autocomplete/search?q=${query}`);
+          const data = await response.json();
+          setSuggestions(data);
+          
+        } catch (error) {
+          console.error('Error fetching autocomplete suggestions:', error);
+        }
+      } else {
+        setSuggestions([]);
+      }
+    };
+    const debounceTimeout = setTimeout(fetchSuggestions, 300); 
+    return () => clearTimeout(debounceTimeout);
+  }, [query]);
+
+  const handleSuggestionClick = (suggestion) => {
+    setSelectedUsername(suggestion); // Set the selected username
+    setQuery(suggestion); // Update the query input with the selected username
+    setSuggestions([]); // Clear suggestions after selection
+  };
+
+
+
+
+
+
+
+
   const handleOpenPopup = () => {
     setShowPopup(true);
+    setShowSearchPopup(false); // Close search popup if open
   };
 
   const handleClosePopup = () => {
     setShowPopup(false);
+  };
+
+  const toggleSearchPopup = () => {
+    setShowSearchPopup(!showSearchPopup);
   };
 
   const handleClick = () => {
@@ -39,89 +78,73 @@ function SliderBar() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImage(reader.result); // Assuming setImage is used to preview the image
+        setImage(reader.result);
       };
       reader.readAsDataURL(file);
       
       const formData = new FormData();
       formData.append('posts', file);
       dispatch(createPost(formData));
+      setShowPopup(false);
     }
   };
-  // const uploadFile = async (file) => {
-  //   // This function should handle the actual file upload to your backend
-  //   const formData = new FormData();
-  //   formData.append('file', file);
 
-  //   try {
-  //     const response = await fetch('/upload-endpoint', {
-  //       method: 'POST',
-  //       body: formData,
-  //     });
-
-  //     if (response.ok) {
-  //       console.log('File uploaded successfully');
-  //       // Handle the response from your server
-  //     } else {
-  //       console.error('File upload failed');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error uploading file:', error);
-  //   }
-  // };
-
+ 
+  const handleIconClick = () => {
+    setShowSearchPopup(false); // Close search popup on any icon click
+  };
 
   return (
     <div className="h-full bg-white shadow-lg p-4 mb-5 flex flex-col">
-      <div className="mb-10 mt-4 ml-3 text-2xl font-serif font-semibold tracking-tight">Instagram</div>
+      <div className="mb-10 mt-4 ml-3 text-2xl font-serif font-semibold tracking-tight ">Instagram</div>
       <nav className='ml-3 flex-1'>
         <ul>
           <li className="mb-7 text-base">
-            <NavLink to="/" end className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/" end className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><GoHomeFill size={29} /></span>
-              <span className="ml-4">Home</span>
+              <span className="ml-7">Home</span>
             </NavLink>
           </li>
           <li className="text-base mb-7">
-            <NavLink to="/search" className="flex items-center" activeClassName="text-blue-500">
+            <span className="flex items-center cursor-pointer " onClick={toggleSearchPopup}>
               <span className="material-icons"><IoSearch size={29} /></span>
-              <span className="ml-4">Search</span>
-            </NavLink>
+              <span className="ml-7">Search</span>
+            </span>
           </li>
           <li className="text-base mb-7">
-            <NavLink to="/explore" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/explore" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><MdOutlineExplore size={29} /></span>
-              <span className="ml-4">Explore</span>
+              <span className="ml-7">Explore</span>
             </NavLink>
           </li>
           <li className="text-base mb-7">
-            <NavLink to="/reels" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/reels" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><BsCameraReels size={29} /></span>
-              <span className="ml-4">Reels</span>
+              <span className="ml-7">Reels</span>
             </NavLink>
           </li>
           <li className=" mb-7">
-            <NavLink to="/messages" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/messages" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><RiMessengerLine size={29} /></span>
-              <span className="ml-4">Messages</span>
+              <span className="ml-7">Messages</span>
             </NavLink>
           </li>
           <li className="text-base mb-7">
-            <NavLink to="/notifications" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/notifications" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><FaRegHeart size={29} /></span>
-              <span className="ml-4">Notifications</span>
+              <span className="ml-7">Notifications</span>
             </NavLink>
           </li>
           <li className="text-base mb-7">
             <span className="flex items-center cursor-pointer" onClick={handleOpenPopup}>
               <span className="material-icons"><CgAddR size={29} /></span>
-              <span className="ml-4">Create</span>
+              <span className="ml-7">Create</span>
             </span>
           </li>
           <li className="text-base mb-7">
-            <NavLink to="/profile" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/profile" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><CgProfile size={29} /></span>
-              <span className="ml-4">Profile</span>
+              <span className="ml-7">Profile</span>
             </NavLink>
           </li>
         </ul>
@@ -129,15 +152,15 @@ function SliderBar() {
       <div className="mt-auto ml-3">
         <ul>
           <li className="mb-5 text-base">
-            <NavLink to="/threads" className="flex items-center" activeClassName="text-blue-500">
+            <NavLink to="/threads" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><FaThreads size={29} /></span>
-              <span className="ml-4">Threads</span>
+              <span className="ml-7">Threads</span>
             </NavLink>
           </li>
-          <li className='mb-5'>
-            <NavLink to="/more" className="flex items-center" activeClassName="text-blue-500">
+          <li className='mb-5 '>
+            <NavLink to="/more" className="flex items-center" activeClassName="text-blue-500" onClick={handleIconClick}>
               <span className="material-icons"><CgDetailsMore size={29} /></span>
-              <span className="ml-4">More</span>
+              <span className="ml-7">More</span>
             </NavLink>
           </li>
         </ul>
@@ -185,6 +208,42 @@ function SliderBar() {
                 capture="environment"
                 name='media'
               />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSearchPopup && (
+        <div className="fixed top-2 m left-20 bottom-0 z-50 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out mt-20">
+          <div className="p-6">
+            <h2 className="text-xl font-semibold mb-4">Search</h2>
+            <input
+              type="text"
+              placeholder="Search by username..."
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
+              className="w-full p-2 border border-gray-300 rounded-md"/>
+    
+            <div className="mt-4">
+              <h3 className="font-semibold mb-2">Recent</h3>
+              <p className="text-gray-500"><ul>
+        {suggestions.map((suggestion, index) => (
+          <li key={index}>
+            {<div className='flex items-center p-3  rounded-lg w-72 bg-white'>
+              <img src="https://static.vecteezy.com/system/resources/thumbnails/027/951/137/small_2x/stylish-spectacles-guy-3d-avatar-character-illustrations-png.png" 
+        alt="User Avatar" 
+        className="w-10 h-10 rounded-full object-cover mr-3"/>
+        <div className="flex-grow">
+        <div className="font-bold">{suggestions}</div>
+        <div className="text-gray-500 text-sm">Following</div>
+      </div>
+      
+
+        
+              </div>} {/* dispalay all the users */}
+          </li>
+        ))}
+      </ul>.</p>
             </div>
           </div>
         </div>
