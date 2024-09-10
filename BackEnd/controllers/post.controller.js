@@ -57,6 +57,93 @@ const pushPost = asyncHandler(async (req, res) => {
   });
 
 
+
+  // const countPosts= asyncHandler(async(req,res)=>{
+  //   console.log("Post created in successfully");
+  
+
+
+  //   try {
+
+  //     const { username }= req.params||req.body||req.query||req.username;// const username = req.params.username || req.body.username || req.query.username || req.username;
+  //     const user = await User.findOne({ username });
+  //     console.log(user);
+  //     console.log(user.posts.length);
+  //     const postCount = user.posts.length;
+  //     console.log({ postCount }); 
+  //     return res.status(201).json(new ApiResponse(true, "Post count successfully", {postCount}))
+  //   } catch (error) {
+  //     console.error('Error counting user posts:', error);
+  //     throw new ApiError(error.message || "Failed to count post", error.statusCode || 500);
+  //   }
+  // })
+
+
+//   const countPosts = asyncHandler(async (req, res) => {
+//     const { username } = req.params;
+//     let userToFetch = username;
+  
+  
+//     if (!userToFetch && req.user) {
+//       userToFetch = req.user.username;
+//     }
+//       console.log(userToFetch)
+//     if (!userToFetch) {
+//       throw new ApiError('Username not provided', 400);
+//     }
+  
+//     try {
+//       const user = await User.findOne({ username: userToFetch });
+//       if (!user) {
+//         throw new ApiError('User not found', 404);
+//       }
+  
+//       const postCount = user.posts.length;
+//       return res.status(200).json(new ApiResponse(true, "Post count retrieved successfully", { postCount }));
+//     } catch (error) {
+//       console.error('Error counting user posts:', error);
+//       throw new ApiError(error.message || "Failed to count posts", error.statusCode || 500);
+//     }
+//   });
+
+
+const countPosts = asyncHandler(async (req, res) => {
+  console.log("Post created successfully");
+
+  try {
+    const username = req.params.username || req.body.username || req.query.username || req.username;
+    
+    if (!username) {
+      throw new ApiError('Username is required', 400); // Handle missing username
+    }
+
+    const user = await User.findOne({ username });
+
+      console.log("in the post ",username);
+    if (!user) {
+      throw new ApiError('User not found', 404);
+    }
+
+    const postCount = user.posts.length;
+    console.log({ postCount });
+
+    return res.status(200).json(new ApiResponse(true, "Post count fetched successfully", { postCount }));
+  } catch (error) {
+    console.error('Error counting user posts:', error);
+    throw new ApiError(error.message || "Failed to count posts", error.statusCode || 500);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 const fetchAllPosts = asyncHandler(async(req,res)=>{
 
   const getAllPosts = await Post.find()
@@ -72,13 +159,15 @@ const fetchAllPosts = asyncHandler(async(req,res)=>{
 
 
 
-  // console.log("All posts:", getAllPosts);
+  console.log("All posts:", getAllPosts);
   return res.status(200).json(new ApiResponse(true, "All Posts", getAllPosts));
+
 
 })
 
 
 export  { 
      pushPost,
-     fetchAllPosts
+     fetchAllPosts,
+     countPosts
     };

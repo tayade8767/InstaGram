@@ -35,7 +35,7 @@ function Home() {
           </div>
           <div className='flex flex-col items-center'>
               { 
-                 posts.map( (postwithuser) => (
+                 posts.map((postwithuser) => (
                     <PostPage key={postwithuser._id} postwithuser={postwithuser}  />
                  ))
               }

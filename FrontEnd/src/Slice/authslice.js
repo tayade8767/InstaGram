@@ -29,18 +29,16 @@ export const register = createAsyncThunk('auth/register',
 )
 
 export const login = createAsyncThunk('auth/login',
-    async(userData,thunkAPI) => {
-        try{
-          console.log("Sending userData:", userData);
-          const response = await api.post('/api/v1/users/login', userData);
-          console.log(response.data); // Check for cookies in response headers
-          
-        
-          return response.data;
-        } catch(err) {
-            return thunkAPI.rejectWithValue(err.response?.data || err.message);
-        }
-    }
+  async(userData,thunkAPI) => {
+      try{
+        console.log("Sending userData:", userData);
+        const response = await api.post('/api/v1/users/login', userData);
+        console.log(response.data); // Check for cookies in response headers
+        return response.data;
+      } catch(err) {
+          return thunkAPI.rejectWithValue(err.response?.data || err.message);
+      }
+  }
 )
 
 const authslice  = createSlice({
