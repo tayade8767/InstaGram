@@ -37,7 +37,7 @@ import SearchRouter from './routes/search.router.js';
 
 // import Profile from './routes/profile.router.js'
 import userprofile  from './routes/user.router.js';
-=======
+
 import chatRouter from './routes/chat.router.js'
 
 
@@ -58,13 +58,16 @@ app.use("/api/v1/posts",PostRouter);                //   like all routes
 
 app.use("/api/v1/comment",CommentRouter);          //  comment all routes
  
+
+app.use("/api/autocomplete",SearchRouter);
+
+
+// app.use("/api/profile",Profile)
+
 app.use("/api/autocomplete",SearchRouter);       // search all routes
 
 app.use("/api/v1/chat", chatRouter);            // chat all routes
 
-
-
-// app.use("/api/profile",Profile)
 
 
 /*  fro defining routes END      */
