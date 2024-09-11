@@ -1,18 +1,15 @@
 import jwt  from "jsonwebtoken";
 import {ApiError} from "../Utils/ApiError.js";
 import {asyncHandler} from "../Utils/asyncHandler.js";
-
 import { User } from "../models/user.model.js";
+
+
 
 const verifyJWT = asyncHandler(async (req, res, next) => {
     try {
         console.log("inside verify jwt middleware");
-
-        // Access token from cookies or Authorization header
         const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-
-        console.log("Cookies:", req.cookies);  // This will log all the cookies sent in the request
-
+        console.log("Cookies:", req.cookies);  
         if (!token) {
             throw new ApiError("Not authorized, token is missing", 401);
         }
@@ -35,4 +32,3 @@ const verifyJWT = asyncHandler(async (req, res, next) => {
 
 
 export default { verifyJWT };
-

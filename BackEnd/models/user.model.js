@@ -14,7 +14,6 @@ const userSchema = new Schema(
     },
     email:{
         type:String,
-        unique:true,
         required:true,
         lowercase:true,
         trim:true
@@ -26,10 +25,9 @@ const userSchema = new Schema(
         index:true
     },
     avatar: {
-        type: String,      
+        type: String,      //   cloudnary url
         default:null,
     },
-
     password:{
         type:String,
         required:[true,'Password is required']
@@ -40,10 +38,6 @@ const userSchema = new Schema(
             ref: "Post"
         }
     ],
-    profile: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profile'
-    },
     refreshToken:{
         type:String,
     }
