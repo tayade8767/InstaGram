@@ -5,8 +5,7 @@ import { ApiResponse } from '../Utils/ApiResponse.js';
 import { User } from '../models/user.model.js';
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose";
-import cloudinaryFunctions from '../Utils/cloudinary.js';
-const { uploadOnCloudinary, deleteFromCloudinary } = cloudinaryFunctions;
+import  uploadOnCloudinary  from '../Utils/cloudinary.js';
 
 const generateAccessAndRefereshTokens = async(userId) => {
     try {
@@ -158,37 +157,44 @@ const loginUser = asyncHandler( async (req,res) => {
 })
 
 const updateUserProfile = asyncHandler(async (req, res) => {
+
+        console.log("Updating user profile right now...");
+
     try {
       const avatarLocalPath = req.file?.path;
       const loggedInUserId = req.user._id;
       const { username } = req.params;
-  
+        console.log("inside try block for updating user profile")
       const userToUpdate = await User.findOne({ username });
       if (!userToUpdate) {
         return res.status(404).json({ message: "User not found" });
       }
-  
-      if (loggedInUserId.toString() !== userToUpdate._id.toString()) {
-        return res.status(403).json({ message: "You are not authorized to update this profile" });
-      }
-  
       
-if (avatarLocalPath) {
+    //   if (loggedInUserId.toString() !== userToUpdate._id.toString()) {
+    //       return res.status(403).json({ message: "You are not authorized to update this profile" });
+    //     }
+    
+        console.log("avatar local path   : ",avatarLocalPath);
+        
+    if(avatarLocalPath) {
            
-    if (userToUpdate.avatar && userToUpdate.avatar.public_id) {
-        await deleteFromCloudinary(userToUpdate.avatar.public_id);
-    }
+    // if (userToUpdate.avatar && userToUpdate.avatar.public_id) {
+    //     await deleteFromCloudinary(userToUpdate.avatar.public_id);
+    // }
 
-   
-const avatarUpload = await uploadOnCloudinary(avatarLocalPath);
-if (avatarUpload) {
-    userToUpdate.avatar = avatarUpload.secure_url;
-}
-}
+       console.log("upload avater on cloudinary 1")
+        const avatarUpload = await uploadOnCloudinary(avatarLocalPath);
+        console.log("upload avater on cloudinary 2")
+        if (avatarUpload) {
+            userToUpdate.avatar = avatarUpload.secure_url;
+        }
+        console.log("upload avater on cloudinary 3")
+    }
   
       await userToUpdate.save();
       const updatedUser = await User.findById(userToUpdate._id).select("-password -refreshToken");
-  
+    
+      console.log("updatedUser akash tatat  : ", updatedUser);    
       return res.status(200).json(new ApiResponse(200, updatedUser, "User profile updated successfully"));
     } catch (error) {
       console.error('Error in updateUserProfile:', error);
@@ -230,6 +236,8 @@ const currentUser =asyncHandler(async(req, res) => {
          throw new ApiError(500, "Error while fetching current user");
     }
 })
+
+
 const getcurrentuser = asyncHandler(async (req,res) => {
     // const currentUser = req.user?._id;
     const currentUser = await User.findById(req?.user._id);

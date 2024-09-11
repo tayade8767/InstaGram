@@ -8,7 +8,7 @@ const router =Router();
 import { 
     registerUser,
     loginUser,
-    getcurrentuser
+    getcurrentuser,
     // logoutUser,
     userProfile,
     updateUserProfile,
@@ -19,7 +19,7 @@ import {
     // getUserProfile
  } from '../controllers/user.controller.js';
 
-//  console.log("use.router.js file");
+ console.log("use.router.js file for updating user profile");
 
 router.route('/register').post(registerUser);
 

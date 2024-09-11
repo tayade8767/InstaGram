@@ -1,3 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-undef */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 
 import React, { useRef, useState } from 'react';
 import {Link } from 'react-router-dom'
@@ -13,16 +18,13 @@ import { MdOutlinePermContactCalendar } from "react-icons/md";
 
 
 function Profile({ username1 }) {
-const [postCount1,setPostCount] =useState(0);
+  const [postCount1,setPostCount] =useState(0);
   const { username: paramUsername } = useParams();
   const username = paramUsername||username1; 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
-// eslint-disable-next-line react/prop-types
-function Profile({props}) {
 
   const inputRef = useRef(null);
   const [image, setImage] = useState("https://tse2.mm.bing.net/th?id=OIP.x7X2oAehk5M9IvGwO_K0PgHaHa&pid=Api&P=0&h=180"); // Replace with your placeholder image path
@@ -105,37 +107,37 @@ function Profile({props}) {
     };
 
     fetchUser();
-}, [username]);
+ }, [username]);
 
 
-// useEffect(() => {
-//   const fetchPostCount = async()=>{
-//    console.log('Fetching post count');
-//       const response = await fetch(`http://localhost:3000/api/posts/count/${username}`,{
-//         method: 'GET',
-//         credentials: 'include', 
-//     })    
-//     console.log("this the controller");
-//       if(!response.ok){
-//        throw new Error('Failed to fetch post count');
-//     }
+  // useEffect(() => {
+  //   const fetchPostCount = async()=>{
+  //    console.log('Fetching post count');
+  //       const response = await fetch(`http://localhost:3000/api/posts/count/${username}`,{
+  //         method: 'GET',
+  //         credentials: 'include', 
+  //     })    
+  //     console.log("this the controller");
+  //       if(!response.ok){
+  //        throw new Error('Failed to fetch post count');
+  //     }
 
-//      const data = await response.json();
-//      setPostCount(data.count);
+  //      const data = await response.json();
+  //      setPostCount(data.count);
+      
+
+
+  //     console.error('Error fetching post count:', err);
+  //     toast.error('Failed to fetch post count');
     
-
-
-//     console.error('Error fetching post count:', err);
-//     toast.error('Failed to fetch post count');
-  
-//   }
-//   fetchPostCount();
-// },[username]);
+  //   }
+  //   fetchPostCount();
+  // },[username]);
 
 
 
-console.log('Fetching post count');
-useEffect(() => {
+ console.log('Fetching post count');
+ useEffect(() => {
   const fetchPostCount = async () => {
     try {
       const response = await fetch(`http://localhost:3000/api/v1/posts/count/${username}`, {
@@ -154,7 +156,7 @@ useEffect(() => {
     }
   };
   fetchPostCount();
-}, [username]);
+ }, [username]);
 
 
   return (
@@ -223,4 +225,4 @@ useEffect(() => {
   );
 }
 
-export default Profile
+export default Profile;

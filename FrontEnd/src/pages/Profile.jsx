@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import SliderBar from '../components/SliderBar'
@@ -18,4 +19,4 @@ function Profile({ username1 }) {
   )
 }
 
-export default Profile
+export default Profile;

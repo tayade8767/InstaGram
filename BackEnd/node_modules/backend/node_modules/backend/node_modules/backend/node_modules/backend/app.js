@@ -50,7 +50,7 @@ import chatRouter from './routes/chat.router.js'
 
 console.log("app.js file")
 
-app.use("/api/v1/users",UserRouter);//api/v1/users/profile  http://localhost:3000/api/v1/users/currentuser
+app.use("/api/v1/users",UserRouter);//    
 
 // app.use("/api/v1/posts",PostRouter);               //   user all routes
 
