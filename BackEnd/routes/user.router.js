@@ -8,6 +8,7 @@ const router =Router();
 import { 
     registerUser,
     loginUser,
+    getcurrentuser
     // logoutUser,
     userProfile,
     updateUserProfile,
@@ -18,9 +19,10 @@ import {
     // getUserProfile
  } from '../controllers/user.controller.js';
 
-//  console.log("use.router.js file");/api/v1/users/register
+//  console.log("use.router.js file");
 
 router.route('/register').post(registerUser);
+
 router.route('/login').post(loginUser);//not use verity jwt this route
 console.log("use.router.js file");
 router.route('/profile/:username').get(verifyJWT,userProfile);//api/v1/users/profile
@@ -33,6 +35,10 @@ router.route('/update-profile/:username').patch(
     upload.single("avatar"),
     updateUserProfile
 );
+
+
+router.route('/login').post(loginUser);
+router.route('/me').get(verifyJWT,getcurrentuser);
 
 // router.route('/logout').post(verifyJWT,logoutUser);
 // router.route('/refresh-token').post(refreshAccessToken);

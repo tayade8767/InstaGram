@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-infinite-scroller": "^1.2.6",
+    "socket.io": "^4.7.5"
+  }
+}

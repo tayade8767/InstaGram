@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { upload } from "../middlewares/multer.middleware.js";
 import authMiddleware from "../middlewares/auth.middleware.js";
 const { verifyJWT } = authMiddleware;
 

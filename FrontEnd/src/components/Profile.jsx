@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
+
 function Profile({ username1 }) {
 const [postCount1,setPostCount] =useState(0);
   const { username: paramUsername } = useParams();
@@ -18,6 +19,10 @@ const [postCount1,setPostCount] =useState(0);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+
+// eslint-disable-next-line react/prop-types
+function Profile({props}) {
 
   const inputRef = useRef(null);
   const [image, setImage] = useState("https://tse2.mm.bing.net/th?id=OIP.x7X2oAehk5M9IvGwO_K0PgHaHa&pid=Api&P=0&h=180"); // Replace with your placeholder image path

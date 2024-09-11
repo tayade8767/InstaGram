@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
@@ -7,6 +8,7 @@ import HeaderForStories from '../components/HeaderForStories';
 import SliderBar from '../components/SliderBar';
 import SideComponantHomepage from '../components/SideComponantHomepage';
 import PostPage from './PostPage';
+import InfiniteScroll from 'react-infinite-scroller';
 
 function Home() {
   const { isLoading, posts } = useSelector((state) => state.posts); // Adjust selector to match slice name
@@ -39,6 +41,20 @@ function Home() {
                     <PostPage key={postwithuser._id} postwithuser={postwithuser}  />
                  ))
               }
+              <InfiniteScroll
+                pageStart={0}
+                // loadMore={loadFunc}
+                hasMore={true || false}
+                loader={<div className="loader" key={0}>Loading ...</div>}
+                useWindow={false}
+                // getScrollParent={() => this.scrollParentRef}
+            >
+                  { 
+                    posts.map( (postwithuser) => (
+                        <PostPage key={postwithuser._id} postwithuser={postwithuser}  />
+                    ))
+                  }
+            </InfiniteScroll>
           </div>
         </div>    
         <div className="w-2/5 p-4 bg-yellow-300">
