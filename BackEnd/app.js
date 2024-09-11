@@ -34,7 +34,12 @@ import PostRouter from './routes/post.router.js';
 import LikeRouter from './routes/like.router.js';
 import CommentRouter from './routes/comment.router.js';
 import SearchRouter from './routes/search.router.js';
+
+// import Profile from './routes/profile.router.js'
+import userprofile  from './routes/user.router.js';
+=======
 import chatRouter from './routes/chat.router.js'
+
 
 /*   for importing files END     */ 
 
@@ -45,7 +50,7 @@ import chatRouter from './routes/chat.router.js'
 
 console.log("app.js file")
 
-app.use("/api/v1/users",UserRouter);
+app.use("/api/v1/users",UserRouter);//api/v1/users/profile  http://localhost:3000/api/v1/users/currentuser
 
 // app.use("/api/v1/posts",PostRouter);               //   user all routes
 
@@ -56,6 +61,10 @@ app.use("/api/v1/comment",CommentRouter);          //  comment all routes
 app.use("/api/autocomplete",SearchRouter);       // search all routes
 
 app.use("/api/v1/chat", chatRouter);            // chat all routes
+
+
+
+// app.use("/api/profile",Profile)
 
 
 /*  fro defining routes END      */

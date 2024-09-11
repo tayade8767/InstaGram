@@ -36,6 +36,11 @@ function Home() {
             <HeaderForStories />
           </div>
           <div className='flex flex-col items-center'>
+              { 
+                 posts.map((postwithuser) => (
+                    <PostPage key={postwithuser._id} postwithuser={postwithuser}  />
+                 ))
+              }
               <InfiniteScroll
                 pageStart={0}
                 // loadMore={loadFunc}

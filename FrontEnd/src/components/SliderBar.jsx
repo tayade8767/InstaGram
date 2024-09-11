@@ -52,7 +52,7 @@ function SliderBar() {
   };
 
 
-
+console.log(" iam wrinting");
 
 
 

@@ -2,15 +2,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { TbDots } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
 
 function PostofUsersIcon({ user }) {
 
   // Log user to debug what's being passed
   // console.log(user);
+  const navigate = useNavigate();
 
   // Add a check for user and user.avatar
   if (!user || !user.avatar) {
     return <div>Loading...</div>; // Fallback UI or loading indicator
+  }
+  const handlesumbmit = () => {
+    navigate(`/profile/${user.username}`);
   }
 
   return (
@@ -18,7 +23,7 @@ function PostofUsersIcon({ user }) {
       <div className="flex items-center">
         <div className="shrink-0">
           <div className="w-12 h-12 rounded-full border-[.1rem] overflow-hidden">
-            <img 
+            <img onClick={handlesumbmit}
               src={user.avatar} 
               alt='avatar of user which having post'
               className="w-full h-full object-cover"
