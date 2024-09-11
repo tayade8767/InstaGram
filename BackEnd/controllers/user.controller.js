@@ -91,12 +91,12 @@ const registerUser = asyncHandler( async (req,res) => {
 
 
 const loginUser = asyncHandler( async (req,res) => {
-    console.log("entering to the loginuser")
+    // console.log("entering to the loginuser")
     const { username, password } = req.body;
 
-    console.log("Received registration data:");
-    console.log("Username:", username);
-    console.log("Password:", password);
+    // console.log("Received registration data:");
+    // console.log("Username:", username);
+    // console.log("Password:", password);
 
     if(!username || !password){
         throw new ApiError(400,"username of password field is empty");
@@ -142,12 +142,25 @@ const loginUser = asyncHandler( async (req,res) => {
 
 })
 
+const getcurrentuser = asyncHandler(async (req,res) => {
+    // const currentUser = req.user?._id;
+    const currentUser = await User.findById(req?.user._id);
+    // console.log("from controller:",req?.user);
+    if(!currentUser) {
+        throw new ApiError(401,"User not authenticated");
+    }
+    return res
+    .status(200)
+    .json(new ApiResponse(200, currentUser  ,"this is the current user"));
+})
+
 
 
 
 export { 
     registerUser,
     loginUser,
+    getcurrentuser
     // logoutUser,
     // refreshAccessToken,
     // changeUserPassword,

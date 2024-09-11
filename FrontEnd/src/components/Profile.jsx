@@ -6,6 +6,7 @@ import { FaKeyboard } from "react-icons/fa6";
 import { CiSaveDown1 } from "react-icons/ci";
 import { MdOutlinePermContactCalendar } from "react-icons/md";
 
+// eslint-disable-next-line react/prop-types
 function Profile({props}) {
   const inputRef = useRef(null);
   const [image, setImage] = useState("https://tse2.mm.bing.net/th?id=OIP.x7X2oAehk5M9IvGwO_K0PgHaHa&pid=Api&P=0&h=180"); // Replace with your placeholder image path

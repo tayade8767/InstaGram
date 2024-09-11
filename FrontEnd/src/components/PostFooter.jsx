@@ -41,6 +41,7 @@ function PostFooter( { imagevedio,postid,comments } ) {
 
     // const commentcount = useSelector()
     
+    
     useEffect(() => {
 
         
@@ -81,12 +82,13 @@ function PostFooter( { imagevedio,postid,comments } ) {
         }
     }
 
+
     const onEmojiClick = (emojiObject) => {
         setComment(prevComment => prevComment + emojiObject.emoji);
     }
 
   return (
-    <div className=" flex-col items-center bg-blue-50 pb-1">
+    <div className=" flex-col items-center pb-1 mt-2">
         <div className='flex'>
             <div onClick={changelikedislike} className='cursor-pointer hover:scale-110 transition-transform duration-200'>
             {!likeordislike ? <FaRegHeart size={26} /> : <FaHeart color='red' size={26} />}
@@ -108,7 +110,7 @@ function PostFooter( { imagevedio,postid,comments } ) {
             <span className='text-sm'>akash tayade</span>
             <span className='text-sm '>...More</span>
         </div>
-        <div className='text-slate-400 flex ml-[.2rem] mt-2 '>
+        <div onClick={() => setpopupforcomment(true)} className='text-slate-400 flex ml-[.2rem] mt-2 cursor-pointer'>
             <span className='text-sm'>View all {countcomment} comments</span>
         </div>
         <form onSubmit={handleCommentSubmit} className="flex items-center border-b border-gray-200 pt-3">

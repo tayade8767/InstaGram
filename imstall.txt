@@ -20,3 +20,7 @@ npm install @reduxjs/toolkit react-redux axios
 npm install axios react-router-dom
 
 npm install reactjs-popup --save
+
+npm install chatbot-widget-ui@latest
+
+npm i react-infinite-scroller
