@@ -101,9 +101,6 @@ const registerUser = asyncHandler( async (req,res) => {
 
 })
 
-
-
-
 const loginUser = asyncHandler( async (req,res) => {
     // console.log("entering to the loginuser")
     const { username, password } = req.body;
