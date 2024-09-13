@@ -24,3 +24,7 @@ npm install reactjs-popup --save
 npm install chatbot-widget-ui@latest
 
 npm i react-infinite-scroller
+
+npm i react-chatbot-kit
+
+npm install react-chatbotify --save

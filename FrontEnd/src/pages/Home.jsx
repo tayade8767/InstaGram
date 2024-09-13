@@ -12,6 +12,8 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 function Home() {
   const { isLoading, posts } = useSelector((state) => state.posts); // Adjust selector to match slice name
+  
+  const currentUser = useSelector((state) => state.chat.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,7 +59,7 @@ function Home() {
             </InfiniteScroll>
           </div>
         </div>    
-        <div className="w-2/5 p-4 bg-yellow-300">
+        <div className="w-2/5 p-4">
           <SideComponantHomepage/>
         </div>
       </div>

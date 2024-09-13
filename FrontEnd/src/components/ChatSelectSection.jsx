@@ -9,8 +9,6 @@ import { setSelectedUser } from "../Slice/chatsclice.js";
 
 import { useSelector, useDispatch } from "react-redux";
 
-
-
 function ChatSelectSection({ users,onChatSelect }) {
 
     const [allusersforchat, setallusersforchat] = useState([]);
@@ -47,14 +45,13 @@ function ChatSelectSection({ users,onChatSelect }) {
             <span className="text-zinc-400">Requests</span>
         </div>
         <div className="mx-5">
-        {
-            allusersforchat.map((user, index) => (
-            <div key={index} onClick={() => handleUserSelect(user)}>
-              <Usericon user={user} />
-            </div>
-          ))
-        }
-
+          {
+              allusersforchat.map((user, index) => (
+              <div key={index} onClick={() => handleUserSelect(user)}>
+                <Usericon user={user} />
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
