@@ -18,7 +18,7 @@ function Chatbotcpmponant() {
         botResponse: {
             message: async (params) => {
                 try {
-                    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBoy2MSCSa9Fgxnhs288vlPYmeDsQqXxCU', {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${import.meta.process.env.REACT_APP_GEMINI_API_URL}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
